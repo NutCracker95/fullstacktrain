@@ -17,7 +17,7 @@ jobs:
 
     - name: downcase REPO #Repository name might contain uppercase letters that do not work with the docker registry
       run: |
-        echo "REPO=${github.repository@L}" >>${GITHUB_REPOSITORY}
+        echo "REPO=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
     
     # Step 2: Log in to GitHub Container Registry
     - name: Log in to GitHub Container Registry
