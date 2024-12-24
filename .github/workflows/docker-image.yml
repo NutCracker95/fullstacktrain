@@ -17,7 +17,7 @@ jobs:
 
     - name: downcase REPO #Repository name might contain uppercase letters that do not work with the docker registry
       run: |
-        repo_lower=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+        echo "repo_lower=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> "${GITHUB_ENV_lower}"
     
     # Step 2: Log in to GitHub Container Registry
     - name: Log in to GitHub Container Registry
@@ -29,8 +29,8 @@ jobs:
 
     # Step 3: Build the Docker image
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/${repo_lower}/my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/${GITHUB_ENV_lower}/my-image-name:$(date +%s)
 
     # Step 4: Push the Docker image to GHCR
     - name: Push the Docker image to GitHub Container Registry
-      run: docker push ghcr.io/${repo_lower}/my-image-name:$(date +%s)
+      run: docker push ghcr.io/${GITHUB_ENV_lower}/my-image-name:$(date +%s)
