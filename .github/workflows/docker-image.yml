@@ -25,8 +25,8 @@ jobs:
 
     # Step 3: Build the Docker image
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository }}/my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository | toLower }}/my-image-name:$(date +%s)
 
     # Step 4: Push the Docker image to GHCR
     - name: Push the Docker image to GitHub Container Registry
-      run: docker push ghcr.io/${{ github.repository }}/my-image-name:$(date +%s)
+      run: docker push ghcr.io/${{ github.repository | toLower }}/my-image-name:$(date +%s)
