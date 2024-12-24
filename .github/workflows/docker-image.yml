@@ -17,7 +17,7 @@ jobs:
 
     - name: downcase REPO #Repository name might contain uppercase letters that do not work with the docker registry
       run: |
-        echo "repo=${github.repository@L}" >> "${GITHUB_ENV}"
+        echo "repo=${github.repository,,}" >> "${GITHUB_ENV}"
     
     - name: Generate Timestamp
       run: |
